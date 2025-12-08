@@ -5,8 +5,94 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:software_lab11"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow"
+        Height="450"
+        Width="800">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
 
+        <Grid Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Slider Name="Slider"
+                    Value="30"
+                    Maximum="60"
+                    Minimum="10"
+                    TickFrequency="5"
+                    TickPlacement="Both"
+                    Grid.Row="0"
+                    Grid.ColumnSpan="3"
+                    AutoToolTipPlacement="TopLeft"
+                    Margin="20"/>
+
+            <ListBox Name="Color"
+                     Width="250"
+                     SelectedIndex="0"
+                     Grid.Row="1"
+                     Grid.Column="0">
+                <ListBoxItem Content="Красный"
+                             Tag="Red"/>
+                <ListBoxItem Content="Зеленый"
+                             Tag="Green"/>
+                <ListBoxItem Content="Синий"
+                             Tag="Blue"/>
+                <ListBoxItem Content="Жёлтый"
+                             Tag="Yellow"/>
+                <ListBoxItem Content="Фиолетовый"
+                             Tag="Purple"/>
+            </ListBox>
+
+            <ListBox Name="Font"
+                     Width="250"
+                     SelectedIndex="0"
+                     Grid.Row="1"
+                     Grid.Column="1">
+                <ListBoxItem Content="Georgia"
+                             Tag="Georgia"/>
+                <ListBoxItem Content="Arial"
+                             Tag="Arial"/>
+                <ListBoxItem Content="Times New Roman"
+                             Tag="Times New Roman"/>
+                <ListBoxItem Content="Calibri"
+                             Tag="Calibri"/>
+                <ListBoxItem Content="Segoe Script"
+                             Tag="Segoe Script"/>
+            </ListBox>
+
+            <CheckBox Name="Mark"
+                      Content="Только для чтения"
+                      VerticalAlignment="Center"
+                      Grid.Row="1"
+                      Grid.Column="2"/>
+
+            <TextBox Name="Text"
+                     Grid.Row="2"
+                     Grid.ColumnSpan="3"
+                     Margin="25"
+                     Padding="5"/>
+        </Grid>
+
+        <TextBox Grid.Row="1"
+                 Name="Target"
+                 TextAlignment="Center"
+                 VerticalAlignment="Center"
+                 Margin="15"
+                 Padding="15"
+                 FontSize="{Binding Value, ElementName=Slider, Mode=OneWay}"
+                 FontFamily="{Binding ElementName=Font, Path=SelectedItem.Tag, Mode=Default}"
+                 Foreground="{Binding ElementName=Color, Path=SelectedItem.Tag, Mode=Default}"
+                 Text="{Binding Text, ElementName=Text, Mode=TwoWay}"/>
     </Grid>
 </Window>
